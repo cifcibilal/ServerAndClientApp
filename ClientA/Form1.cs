@@ -18,10 +18,10 @@ namespace ServerAndClientApp
     public partial class Form1 : Form
     {
         public Thread thread;
-        public TcpClient baglantiKur;
-        public NetworkStream ag;
-        public StreamReader oku;
-        public StreamWriter yaz;
+        public TcpClient baglantiKur; //Bağlantı nesnesi
+        public NetworkStream ag; //Ağ akışı
+        public StreamReader oku; //Okuma işlemleri
+        public StreamWriter yaz; //Yazma işlemleri
         public delegate void ricdegis(string text);
         public Form1()
         {
@@ -33,7 +33,7 @@ namespace ServerAndClientApp
         }
         public void okumayaBasla()
         {
-            ag = baglantiKur.GetStream();
+            ag = baglantiKur.GetStream(); 
             oku = new StreamReader(ag);
             while (true)
             {
@@ -97,7 +97,6 @@ namespace ServerAndClientApp
                 yaz = new StreamWriter(ag);
                 yaz.WriteLine(txtGonderilenMesaj.Text);
                 yaz.Flush();
-                //txtGelenMesaj.AppendText(txtGonderilenMesaj.Text + "\n");
                 txtGonderilenMesaj.Text = "";
             }
         }
